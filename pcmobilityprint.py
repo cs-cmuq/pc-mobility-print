@@ -3,6 +3,7 @@ import json
 import ssl
 import socket
 import base64
+import urllib.parse
 import urllib.request
 import subprocess
 
@@ -110,7 +111,8 @@ class PCMobilityPrint:
 
 		try:
 
-			req = urllib.request.Request(f"{self.baseurl}/printer-url?printerName={name}&serverName={self.socket}")
+			params = urllib.parse.urlencode({"printerName": name, "serverName": self.socket})
+			req = urllib.request.Request(f"{self.baseurl}/printer-url?{params}")
 			req.add_header("Authorization", f"Basic {b64creds}")
 			p = urllib.request.urlopen(req, context=ctx)
 
@@ -149,7 +151,7 @@ class PCMobilityPrint:
 		try:
 
 			# TODO: -L<location> and -D<description> may not always be the same thing
-			cmd = ["/usr/sbin/lpadmin", "-p", name, "-E", "-L", desc, "-D", desc, "-v", url]
+			cmd = ["/usr/sbin/lpadmin", "-p", name.replace(' ', '_'), "-E", "-L", desc, "-D", desc, "-v", url]
 			subprocess.call(cmd)
 
 			return True
