@@ -1,59 +1,14 @@
-# pc-mobility-print
-UNOFFICIAL PaperCut Mobility Print Linux client
+# Silly CMU-Q Printer Adder
 
-# Usage (GUI)
+This simple script (forked and personalized from https://github.com/Rewzilla/pc-mobility-print)
+just adds CMU-Q's Secure Printer Queue to a Linux machine.
 
-## Install dependencies
+It logs into the print server and gets a unique print queue URL that doesn't require
+username/password authentication everytime you want to print.  This makes things much
+more compatible due to so many Linux implementations of keyrings being broken with
+printers.
 
-```
-apt install python3-tk
-```
+## FAQ
 
-## Start the GUI
-
-```
-python3 ./gui.py
-```
-
-# Usage (Command line)
-
-## Get a list of printers
-
-```
-python3 ./cli.py list
-```
-
-## Get a printer IPP URL
-
-```
-python3 ./cli.py get <printername>
-```
-
-## Get a printer description
-
-```
-python3 ./cli.py desc <printername>
-```
-
-## Attempt to automatically add a printer to CUPS
-
-```
-python3 ./cli.py add <printername>
-```
-
-NOTE: You may need to log into CUPS afterward and specify a driver in order for this to work.
-
-## Optional parameters
-
-```
-  -h, --help            show this help message and exit
-  -i, --insecure        Don't verify SSL
-  -s SERVER, --server SERVER
-  -d DOMAIN, --domain DOMAIN
-  -u USERNAME, --username USERNAME
-  -p PASSWORD, --password PASSWORD
-```
-
-# License
-
-[GNU General Public License v3](https://www.gnu.org/licenses/gpl-3.0.en.html)
+- Is it really safe to type in my CMU-Q username and password?  
+  You should always be wary.  This code is pretty simple, though, so feel free to audit it.

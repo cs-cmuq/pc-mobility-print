@@ -135,7 +135,7 @@ class PCMobilityPrint:
 
 		return False
 
-	def add_printer(self, name):
+	def add_printer(self, name, driver=None):
 
 		# TODO: Error checking if host not set
 		# TODO: Error checking if not authenticated
@@ -152,7 +152,14 @@ class PCMobilityPrint:
 
 			# TODO: -L<location> and -D<description> may not always be the same thing
 			cmd = ["/usr/sbin/lpadmin", "-p", name.replace(' ', '_'), "-E", "-L", desc, "-D", desc, "-v", url]
-			subprocess.call(cmd)
+			if driver != None:
+				cmd.append("-P")
+				cmd.append(driver)
+			print("I am going to run the following command: ")
+			print(cmd)
+			answer = input("Continue (y/n)? ")
+			if answer == "y" or answer == "Y":
+				subprocess.call(cmd)
 
 			return True
 
