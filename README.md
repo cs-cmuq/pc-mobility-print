@@ -8,6 +8,15 @@ username/password authentication everytime you want to print.  This makes things
 more compatible due to so many Linux implementations of keyrings being broken with
 printers.
 
+## Usage
+
+1. If you have the campus printer installed and it isn't working, delete it and reboot.  (Yes, you do need to reboot.  No, I don't know why.)
+2. Run this script: `python3 ./cmuq.py`
+3. Enter your username
+4. Enter your password
+5. Says "y"
+6. Done.
+
 ## FAQ
 
 - Is it really safe to type in my CMU-Q username and password?  
